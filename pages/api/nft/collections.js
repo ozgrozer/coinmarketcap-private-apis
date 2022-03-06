@@ -15,7 +15,10 @@ const nftCollections = async (req, res) => {
       sort = 'volume'
     } = req.body
 
-    const browser = await puppeteer.launch({ headless: true })
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox']
+    })
 
     const page = await browser.newPage()
     await page.goto(`${baseApiUrl}/data-api/v3/nft/collections?start=${start}&limit=${limit}&sort=${sort}&desc=${desc}&period=${period}`)
