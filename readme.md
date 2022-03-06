@@ -2,7 +2,7 @@
 
 Convert CoinMarketCap's private APIs to public APIs
 
-## Usage
+## Installation
 
 Clone repo
 ```bash
@@ -46,5 +46,50 @@ pm2 start pm2.json
 
 APIs should be working on
 ```bash
-http://your-ip:1360/api/nft/collections
+http://your-ip:1360/
+```
+
+## Usage
+
+Make a post request to your IP address with your bearer token
+```js
+const axios = require('axios')
+
+const run = async () => {
+  const collections = await axios({
+    data: {
+      start: '0',
+      period: '4',
+      limit: '100',
+      desc: 'true',
+      sort: 'volume'
+    },
+    method: 'post',
+    url: 'http://your-ip:1360/api/nft/collections',
+    headers: {
+      Authorization: 'Bearer BEARER_TOKEN'
+    }
+  })
+
+  console.log(collections.data)
+}
+
+run()
+```
+
+Results would be
+```js
+{
+  success: true,
+  coinmarketcap: {
+    data: { count: '1901', collections: [Array], blockChains: [Array] },
+    status: {
+      timestamp: '2022-03-06T19:45:08.867Z',
+      error_code: '0',
+      error_message: 'SUCCESS',
+      elapsed: '89',
+      credit_count: 0
+    }
+  }
+}
 ```
