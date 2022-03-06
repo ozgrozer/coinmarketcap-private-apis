@@ -19,7 +19,7 @@ Copy `.env.example` as `.env`
 cp .env.example .env
 ```
 
-Open `.env` and paste your bearer token into `BEARER_TOKEN` variable
+Open `.env` and just generate a random bearer token to add to `BEARER_TOKEN` variable (will be used in requests for extra security)
 ```bash
 vim .env
 ```
