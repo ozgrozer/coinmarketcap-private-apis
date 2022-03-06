@@ -28,9 +28,9 @@ const nftCollections = async (req, res) => {
 
     await browser.close()
 
-    res.json({ status: true, coinmarketcap })
+    res.json({ success: true, coinmarketcap })
   } catch (err) {
-    res.json({ status: false, error: err.message })
+    res.json({ success: false, error: err.message })
   }
 }
 
