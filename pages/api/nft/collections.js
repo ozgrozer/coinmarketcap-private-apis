@@ -1,4 +1,4 @@
-import { chromium } from 'playwright-chromium'
+import puppeteer from 'puppeteer'
 
 import withCors from '@components/middlewares/withCors'
 import withBearerToken from '@components/middlewares/withBearerToken'
@@ -15,7 +15,7 @@ const nftCollections = async (req, res) => {
       sort = 'volume'
     } = req.body
 
-    const browser = await chromium.launch({ chromiumSandbox: false })
+    const browser = await puppeteer.launch({ headless: true })
 
     const page = await browser.newPage()
     await page.goto(`${baseApiUrl}/data-api/v3/nft/collections?start=${start}&limit=${limit}&sort=${sort}&desc=${desc}&period=${period}`)

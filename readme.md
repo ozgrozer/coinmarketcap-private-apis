@@ -29,11 +29,6 @@ Install dependencies
 yarn install
 ```
 
-Install `Playwright` dependencies
-```bash
-npx playwright install-deps
-```
-
 Build the app
 ```bash
 yarn build
