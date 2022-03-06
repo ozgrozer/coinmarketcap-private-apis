@@ -1,8 +1,11 @@
 import { chromium } from 'playwright-chromium'
 
+import withCors from '@components/middlewares/withCors'
+import withBearerToken from '@components/middlewares/withBearerToken'
+
 const baseApiUrl = 'https://api.coinmarketcap.com'
 
-export default async (req, res) => {
+const nftCollections = async (req, res) => {
   try {
     const {
       start = '0',
@@ -18,12 +21,14 @@ export default async (req, res) => {
     await page.goto(`${baseApiUrl}/data-api/v3/nft/collections?start=${start}&limit=${limit}&sort=${sort}&desc=${desc}&period=${period}`)
 
     const bodyHtml = await page.evaluate(() => document.body.innerHTML)
-    const apiResult = JSON.parse(bodyHtml.replace(/<[^>]*>/g, ''))
+    const coinmarketcap = JSON.parse(bodyHtml.replace(/<[^>]*>/g, ''))
 
     await browser.close()
 
-    res.json(apiResult)
+    res.json({ status: true, coinmarketcap })
   } catch (err) {
-    res.json({ error_message: err.message })
+    res.json({ status: false, error: err.message })
   }
 }
+
+export default withCors(withBearerToken(nftCollections))
