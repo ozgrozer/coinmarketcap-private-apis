@@ -34,19 +34,24 @@ Build the app
 yarn build
 ```
 
-Install `PM2` if you don't have
+Start the app with `Yarn`
 ```bash
-yarn global add pm2
+yarn start
 ```
 
-Start the app with `PM2`
-```bash
-pm2 start pm2.json
-```
-
-APIs should be working on
+Now APIs should be working on the URL
 ```bash
 http://your-ip:1360/
+```
+
+To run it continuously you'd like to use `PM2` or a similar process manager
+```bash
+# Install it if you don't have
+yarn global add pm2
+# Start the app with PM2
+pm2 start pm2.json
+# Set PM2 to be run on startups
+pm2 startup
 ```
 
 ## Usage
