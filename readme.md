@@ -24,9 +24,14 @@ Open `.env` and just generate a random bearer token to add to `BEARER_TOKEN` var
 vim .env
 ```
 
-Install dependencies
+Install dependencies for this app
 ```bash
 yarn install
+```
+
+Install dependencies for `Puppeteer`
+```bash
+apt install -y libasound2 libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
 ```
 
 Build the app
